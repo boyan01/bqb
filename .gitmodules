@@ -1,0 +1,3 @@
+[submodule "web/assets/ChineseBQB"]
+	path = web/assets/ChineseBQB
+	url = https://github.com/zhaoolee/ChineseBQB.git

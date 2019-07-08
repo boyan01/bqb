@@ -1,0 +1,6 @@
+targets:
+  $default:
+    builders:
+      build_web_compilers|entrypoint:
+        # Avoid building the test directory.
+        generate_for: ['web/**.dart']
