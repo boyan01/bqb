@@ -1,0 +1,37 @@
+os:
+  - linux
+sudo: false
+git:
+  depth: false
+  submodules: true
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libstdc++6
+      - fonts-droid
+      - lib32stdc++6
+before_script:
+  - git clone -b dev https://github.com/flutter/flutter.git ~/flutter
+  - FLUTTER_PATH=~/flutter/bin
+  - PUB_CACHE_BIN=~/.pub-cache/bin
+  - DART_PATH=~/flutter/bin/cache/dart-sdk/bin
+  - export PATH=$PATH:$FLUTTER_PATH:$PUB_CACHE_BIN:$DART_PATH
+  - flutter doctor
+  - pub global activate webdev
+  - pub global activate peanut
+script:
+  - flutter pub upgrade
+  - peanut
+after_success:
+  - git checkout gh-pages
+  - git clean -fd
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: false
+  on:
+    branch: master
+      - ~/.pub-cach
