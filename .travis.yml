@@ -20,14 +20,12 @@ before_script:
   - export PATH=$PATH:$FLUTTER_PATH:$PUB_CACHE_BIN:$DART_PATH
   - flutter doctor
   - pub global activate webdev
-  - pub global activate peanut
+  - pub global activate -sgit https://github.com/boyan01/peanut.dart.git
 script:
   - flutter pub upgrade
   - peanut
-after_success:
-  - git checkout gh-pages
-  - git clean -fd
 deploy:
+  local_dir: .peanutOutput/
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
