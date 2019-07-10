@@ -23,6 +23,7 @@ before_script:
   - pub global activate -sgit https://github.com/boyan01/peanut.dart.git
 script:
   - flutter pub upgrade
+  - dart tools/bqb_json_gen.dart
   - peanut
 deploy:
   local_dir: .peanutOutput/
