@@ -56,7 +56,7 @@ class CategoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Image.network(category.data.first.assetName),
+        Image.network(category.data.first.imageUrl),
         Container(
           color: Colors.black26,
           child: Center(child: Text(category.name)),

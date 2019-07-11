@@ -37,7 +37,7 @@ Map _buildCategory(Directory category) {
 
 BqbItem _buildBqbItem(File bqb) {
   return BqbItem(
-    assetName: _imageUriPrefix + bqb.path.replaceAll(bqbDir.path, ''),
+    imageUrl: _imageUriPrefix + bqb.path.replaceAll(bqbDir.path, ''),
     name: basename(bqb.path),
     size: bqb.statSync().size,
   );

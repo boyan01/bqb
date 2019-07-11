@@ -24,15 +24,15 @@ class Category {
 
 class BqbItem {
   final String name;
-  final String assetName;
+  final String imageUrl;
   final int size;
 
-  BqbItem({this.name, this.assetName, this.size});
+  BqbItem({this.name, this.imageUrl, this.size});
 
   Map toJson() {
     return {
       'name': name,
-      'assetName': assetName,
+      'imageUrl': imageUrl,
       'size': size,
     };
   }
@@ -40,7 +40,7 @@ class BqbItem {
   factory BqbItem.fromJson(Map map) {
     return BqbItem(
       name: map['name'],
-      assetName: map['assetName'],
+      imageUrl: map['imageUrl'],
       size: map['size'],
     );
   }
