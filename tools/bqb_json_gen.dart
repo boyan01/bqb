@@ -51,7 +51,7 @@ void _flushToFile(List<int> data, {String filename = 'manifest.json'}) {
   if (outputFile.existsSync()) {
     outputFile.deleteSync();
   }
-  outputFile.createSync();
+  outputFile.createSync(recursive: true);
   outputFile.openSync(mode: FileMode.write)
     ..writeFromSync(data)
     ..closeSync();
