@@ -2,7 +2,6 @@ os:
   - linux
 sudo: false
 git:
-  depth: false
   submodules: true
 addons:
   apt:

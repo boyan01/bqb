@@ -4,9 +4,11 @@ import 'dart:io';
 import 'package:bqb/repository/model.dart';
 import 'package:path/path.dart';
 
+const _imageUriPrefix = 'https://raw.githubusercontent.com/zhaoolee/ChineseBQB/master/';
+
 final assetsPath = Directory(Directory.current.path + "/web/assets").path;
 
-final bqbDir = Directory('$assetsPath/ChineseBQB');
+final bqbDir = Directory(Directory.current.path + "/ChineseBQB");
 
 main() async {
   assert(await bqbDir.exists(), "can not find ChineseBQB directory");
@@ -28,15 +30,17 @@ Map _buildCategory(Directory category) {
     ..removeWhere((element) => element.path.endsWith('.md'))
     ..sort((a, b) => a.path.compareTo(b.path));
   return Category(
-          name: basename(category.path),
-          data: bqbs
-              .map((bqb) => BqbItem(
-                    assetName: bqb.path.replaceAll(assetsPath, ''),
-                    name: basename(bqb.path),
-                    size: bqb.statSync().size,
-                  ))
-              .toList())
-      .toJson();
+    name: basename(category.path),
+    data: bqbs.whereType<File>().map(_buildBqbItem).toList(),
+  ).toJson();
+}
+
+BqbItem _buildBqbItem(File bqb) {
+  return BqbItem(
+    assetName: _imageUriPrefix + bqb.path.replaceAll(bqbDir.path, ''),
+    name: basename(bqb.path),
+    size: bqb.statSync().size,
+  );
 }
 
 ///write data to file
